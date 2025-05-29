@@ -1,0 +1,262 @@
+html, body {
+  height: 100%;  /* Sayfa ve body'nin yüksekliğini %100 yaparak tam ekran yapıyoruz */
+  margin: 0;     /* Sayfanın etrafındaki boşlukları sıfırlıyoruz */
+  padding: 0;    /* Sayfanın etrafındaki boşlukları sıfırlıyoruz */
+  background-color: #000;  /* Arka planı siyah yapıyoruz */
+  color: #fff;    /* Yazı rengini beyaz yapıyoruz */
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  font-family: 'Times New Roman', serif;
+}
+
+header {
+  background-color: #1a1a1a;
+  padding: 12px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+nav a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #ff7f50;
+}
+
+.nav-right {
+  margin-right: 15px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95em;
+  font-weight: bold;
+  color: #aaa;
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3em;
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
+  margin-top: 100px;
+}
+
+.site-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3.4em;
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
+  margin-top: -10px;
+}
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  background: #111;
+  padding: 8px 0;
+  margin-top: 20px;
+}
+
+.marquee p {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll 25s linear infinite;
+  font-size: 1em;
+  color: #ff7f50;
+  font-family: 'Poppins', sans-serif;
+}
+
+@keyframes scroll {
+  from { transform: translateX(100%); }
+  to { transform: translateX(-100%); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.section {
+  display: none;
+  padding-top: 120px;
+  text-align: center;
+}
+
+.active {
+  display: block;
+}
+
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+form label {
+  display: block;
+  margin-top: 15px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.1em;
+}
+
+form input, form textarea, form button {
+  width: 100%;
+  font-family: 'Times New Roman', serif;
+  font-size: 1em;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #555;
+  background-color: #1a1a1a;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+form input:focus, form textarea:focus {
+  border-color: #ff7f50;
+  outline: none;
+  background-color: #222;
+}
+
+form button {
+  background-color: #444;
+  color: white;
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+}
+
+form button:hover {
+  background-color: #ff7f50;
+  color: #000;
+}
+
+.add-service-panel {
+  max-width: 600px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.add-service-panel input {
+  width: 60%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: 1px solid #666;
+  background-color: #111;
+  color: #fff;
+}
+
+.add-service-panel input:focus {
+  outline: none;
+  border-color: #ff7f50;
+}
+
+.add-service-panel button {
+  padding: 10px 18px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 6px;
+  background-color: #444;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.add-service-panel button:hover {
+  background-color: #ff7f50;
+  color: #000;
+}
+
+.service-count {
+  margin-top: 20px;
+  font-size: 1.1em;
+  color: #ccc;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Footer */
+footer {
+  background-color: #111;
+  padding: 30px 0;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+  margin-top: 50px;
+  margin-bottom: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+footer p {
+  font-size: 1.2em;
+  color: #ccc;
+  margin: 0;
+  font-weight: bold;
+}
+
+footer p a {
+  color: #fff;
+  text-decoration: none;
+}
+
+footer p a:hover {
+  color: #ff7f50;
+  text-decoration: underline;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  .site-title {
+    font-size: 2.5em;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav a {
+    font-size: 1em;
+  }
+
+  .add-service-panel input {
+    width: 90%;
+  }
+
+  .nav-right {
+    display: none;
+  }
+
+  form input, form textarea {
+    font-size: 0.95em;
+  }
+}

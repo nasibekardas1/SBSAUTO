@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SBS AUTO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <style>
+    /* Genel Tasarım */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* Üst Menü */
+    header {
+      background-color: rgba(17, 17, 17, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 15px 40px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    nav {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    nav a {
+      cursor: pointer;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.2em;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #aaa;
+    }
+
+    .section {
+      display: none;
+      padding-top: 120px;
+      text-align: center;
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    .active {
+      display: block;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.98); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Ana Sayfa Başlıkları */
+    .home-title-small, .home-title-medium, .home-title-large {
+      animation: floatText 3s ease-in-out infinite alternate;
+    }
+
+    .home-title-small {
+      font-size: 3em;
+    }
+
+    .home-title-medium {
+      font-size: 4.5em;
+    }
+
+    .home-title-large {
+      font-size: 6em;
+      font-weight: bold;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* Daha hafif bir ışık efekti */
+    }
+
+    @keyframes floatText {
+      0% { transform: translateY(0); opacity: 0.8; }
+      100% { transform: translateY(-15px); opacity: 1; }
+    }
+
+    /* Marquee */
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      margin-top: 30px;
+    }
+
+    .marquee p {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll 20s linear infinite;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    @keyframes scroll {
+      from { transform: translateX(100%); }
+      to { transform: translateX(-100%); }
+    }
+
+    /* Hakkımızda */
+    #about p {
+      font-size: 1.3em;
+      margin: 15px 0;
+      animation: fadeSlideIn 3s ease-in-out infinite alternate;
+      color: #ccc;
+    }
+
+    @keyframes fadeSlideIn {
+      0% { opacity: 0.7; transform: translateY(5px); }
+      100% { opacity: 1; transform: translateY(-5px); }
+    }
+
+    /* Hizmetler */
+    #services ul {
+      padding: 0;
+      margin: 0 auto;
+      max-width: 500px;
+      text-align: left;
+      list-style-type: none;
+    }
+
+    #services li {
+      font-size: 1.2em;
+      padding: 12px;
+      margin: 12px 0;
+      background-color: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      backdrop-filter: blur(6px);
+      transition: transform 0.4s;
+      animation: bounceIn 2.5s infinite alternate;
+    }
+
+    #services li:hover {
+      transform: scale(1.1);
+      background-color: rgba(255, 255, 255, 0.12);
+    }
+
+    @keyframes bounceIn {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-8px); }
+    }
+
+    /* İletişim */
+    #contact p {
+      font-size: 1.2em;
+      margin: 12px 0;
+      animation: flicker 3s infinite;
+      color: #ccc;
+    }
+
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+      }
+      20%, 24%, 55% {
+        opacity: 0.4;
+      }
+    }
+
+    footer {
+      margin-top: auto;
+      text-align: center;
+      padding: 20px 10px;
+      font-size: 1.2em;
+      color: #ccc;
+      background-color: #111;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Parallax Arka Plan */
+    .parallax {
+      position: relative;
+      background-image: url('https://www.w3schools.com/w3images/parallax1.jpg');
+      height: 100vh;
+      background-position: center;
+      background-attachment: fixed;
+      background-size: cover;
+      animation: parallaxAnim 10s ease-in-out infinite;
+    }
+
+    @keyframes parallaxAnim {
+      0% { background-position: center; }
+      50% { background-position: top; }
+      100% { background-position: center; }
+    }
+
+    /* Scroll Snap */
+    body {
+      scroll-snap-type: y mandatory;
+    }
+
+    section {
+      scroll-snap-align: start;
+    }
+
+    /* Video Arka Plan */
+    .video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+    }
+
+    .video-background video {
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+    }
+
+    /* Ekran Boyutlarına Göre Uyarlamalar */
+    @media (max-width: 1200px) {
+      .home-title-small {
+        font-size: 2.5em;
+      }
+
+      .home-title-medium {
+        font-size: 3.5em;
+      }
+
+      .home-title-large {
+        font-size: 5em;
+      }
+
+      nav a {
+        font-size: 1em;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .home-title-small {
+        font-size: 2em;
+      }
+
+      .home-title-medium {
+        font-size: 3em;
+      }
+
+      .home-title-large {
+        font-size: 4em;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      nav a {
+        font-size: 1.1em;
+        text-align: center;
+      }
+
+      #services ul {
+        max-width: 400px;
+      }
+
+      footer {
+        font-size: 1em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .home-title-small {
+        font-size: 1.8em;
+      }
+
+      .home-title-medium {
+        font-size: 2.5em;
+      }
+
+      .home-title-large {
+        font-size: 3.5em;
+      }
+
+      nav a {
+        font-size: 0.9em;
+      }
+
+      #services ul {
+        max-width: 100%;
+      }
+
+      footer {
+        font-size: 0.9em;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a onclick="showSection('home')">Ana Sayfa</a>
+      <a onclick="showSection('about')">Hakkımızda</a>
+      <a onclick="showSection('services')">Hizmetler</a>
+      <a onclick="showSection('contact')">İletişim</a>
+    </nav>
+  </header>
+
+  <!-- Video Arka Plan -->
+  <div class="video-background">
+    <video autoplay muted loop playsinline>
+      <source src="2.mp4" type="video/mp4">
+      Tarayıcınız video etiketini desteklemiyor.
+    </video>
+  </div>
+
+  <!-- Sayfa İçeriği -->
+  <section id="home" class="section active">
+    <div class="home-title-small">Fatih Kardaş</div>
+    <div class="home-title-medium">HOŞ GELDİNİZ</div>
+    <div class="home-title-large">SİTE BAKIM SERVİSİ</div>
+    <div class="marquee">
+      <p>Site Bakım Servisi'ne hoş geldiniz! Güvenli ve hızlı araç bakım hizmetleri!</p>
+    </div>
+  </section>
+
+  <!-- Diğer Bölümler -->
+  <section id="about" class="section">
+    <h2>Hakkımızda</h2>
+    <p>"Siz yola çıkmaya hazır olun, biz aracınızı güvenle hazırlıyoruz..."</p>
+    <p>"SİTE BAKIM SERVİSİ EKİBİ"</p>
+  </section>
+
+  <section id="services" class="section">
+    <h2>Hizmetler</h2>
+    <ul id="service-list">
+      <li>Yağ Değişimi</li>
+      <li>Motor Bakımı</li>
+      <li>Fren Kontrolü</li>
+      <li>Orijinal Yedek Parça Tedarik</li>
+    </ul>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>İletişim</h2>
+    <p>Telefon: 0538 973 07 38 FATİH KARDAŞ</p>
+    <p>Telefon: 0536 852 18 80 ÜZEYİR KARDAŞ</p>
+    <p>Adres: Ürgüp, Nevşehir, Türkiye</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 SBS AUTO - Tüm Hakları Saklıdır.</p>
+    <p>By Nasibe Kardaş</p>
+  </footer>
+
+  <script>
+    let activeSection = 'home';
+
+    function showSection(section) {
+      document.getElementById(activeSection).classList.remove('active');
+      document.getElementById(section).classList.add('active');
+      activeSection = section;
+    }
+  </script>
+</body>
+</html>
